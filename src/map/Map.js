@@ -19,7 +19,7 @@ L.Map = L.Class.extend({
 		trackResize: true,
 		markerZoomAnimation: L.DomUtil.TRANSITION && L.Browser.any3d
 	},
-
+	
 	initialize: function (id, options) { // (HTMLElement or String, Object)
 		options = L.Util.setOptions(this, options);
 
@@ -664,3 +664,7 @@ L.Map.addInitHook = function (fn) {
 L.map = function (id, options) {
 	return new L.Map(id, options);
 };
+
+//
+//
+
