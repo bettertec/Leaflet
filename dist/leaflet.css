@@ -100,16 +100,16 @@
 	float: right;
 	}
 .leaflet-top .leaflet-control {
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 	}
 .leaflet-bottom .leaflet-control {
-	margin-bottom: 10px;
+	/*margin-bottom: 10px;*/
 	}
 .leaflet-left .leaflet-control {
-	margin-left: 10px;
+	/*margin-left: 10px;*/
 	}
 .leaflet-right .leaflet-control {
-	margin-right: 10px;
+	/*margin-right: 10px;*/
 	}
 
 .leaflet-control-zoom {
