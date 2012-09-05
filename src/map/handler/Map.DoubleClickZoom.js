@@ -16,14 +16,9 @@ L.Map.DoubleClickZoom = L.Handler.extend({
 	},
 
 	_onDoubleClick: function (e) {
-		try {
-			//this.setView(e.latlng, this._zoom + 1);
-			//this.setView(this.getCenter(), this._zoom + 1);
-			this.zoomIn();
-		
-		}catch (error) {
-			$BT.log.error(error);
-		}
+
+		this.setView(this.getCenter(), this._zoom + 1);
+
 	}
 });
 
