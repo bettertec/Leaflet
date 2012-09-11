@@ -308,7 +308,7 @@ L.Map = L.Class.extend({
 		if (!this._size || this._sizeChanged) {
 			this._size = new L.Point(
 				this._container.clientWidth,
-				this._container.clientHeight);
+				this._container.clientHeight + 2*$BT.opt_map_center_offset);
 
 			this._sizeChanged = false;
 		}
