@@ -27,7 +27,7 @@ L.Map.TouchZoom = L.Handler.extend({
 		//this._startCenter = p1.add(p2)._divideBy(2);
 		this._startCenter = map._getCenterLayerPoint();
 		this._startDist = p1.distanceTo(p2);
-
+		
 		this._moved = false;
 		this._zooming = true;
 
