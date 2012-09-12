@@ -16,6 +16,7 @@ L.Map.DoubleClickZoom = L.Handler.extend({
 	},
 
 	_onDoubleClick: function (e) {
+
 		this.setView(this.getCenter(), this._zoom + 1);
 
 	}
