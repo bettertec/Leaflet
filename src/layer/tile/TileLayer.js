@@ -499,9 +499,6 @@ L.TileLayer = L.Class.extend({
 				url: this.src
 			});
 		}
-		
-		//$BT.storage.tiles.saveTile(this, this.src);
-		
 		layer._tileLoaded();
 	},
 
