@@ -477,7 +477,6 @@ L.TileLayer = L.Class.extend({
 		tile.onerror = this._tileOnError;
 
 		tile.src     = this.getTileUrl(tilePoint);
-
 	},
 
     _tileLoaded: function () {
