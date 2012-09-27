@@ -500,8 +500,8 @@ L.TileLayer = L.Class.extend({
 			});
 		}
 		
-		$BT.storage.tiles.saveTile(this, this.src);
-
+		//$BT.storage.tiles.saveTile(this, this.src);
+		
 		layer._tileLoaded();
 	},
 
