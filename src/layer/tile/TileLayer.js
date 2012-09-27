@@ -476,10 +476,16 @@ L.TileLayer = L.Class.extend({
 		tile.onload  = this._tileOnLoad;
 		tile.onerror = this._tileOnError;
 
+<<<<<<< HEAD
 		//tile.src     = this.getTileUrl(tilePoint);
 		tile.crossOrigin = 'anonymous';
 		tile.src = $BT.storage.tiles.getTileSource(this.getTileUrl(tilePoint));
 
+=======
+		tile.src     = this.getTileUrl(tilePoint);
+		//tile.crossOrigin = 'anonymous';
+		//tile.src = $BT.storage.tiles.getTileSource(this.getTileUrl(tilePoint));
+>>>>>>> changes on tilelayer
 	},
 
     _tileLoaded: function () {
@@ -502,13 +508,8 @@ L.TileLayer = L.Class.extend({
 			});
 		}
 		
-<<<<<<< HEAD
 		//$BT.storage.tiles.saveTile(this, this.src);
 		
-=======
-		$BT.storage.tiles.saveTile(this, this.src);
-
->>>>>>> tile-layer now uses bt.storage
 		layer._tileLoaded();
 	},
 
