@@ -476,9 +476,9 @@ L.TileLayer = L.Class.extend({
 		tile.onload  = this._tileOnLoad;
 		tile.onerror = this._tileOnError;
 
-		//tile.src     = this.getTileUrl(tilePoint);
-		tile.crossOrigin = 'anonymous';
-		tile.src = $BT.storage.tiles.getTileSource(this.getTileUrl(tilePoint));
+		tile.src     = this.getTileUrl(tilePoint);
+		//tile.crossOrigin = 'anonymous';
+		//tile.src = $BT.storage.tiles.getTileSource(this.getTileUrl(tilePoint));
 	},
 
     _tileLoaded: function () {
@@ -494,15 +494,15 @@ L.TileLayer = L.Class.extend({
 		//Only if we are loading an actual image
 		if (this.src !== L.Util.emptyImageUrl) {
 			L.DomUtil.addClass(this, 'leaflet-tile-loaded');
-
+			
 			layer.fire('tileload', {
 				tile: this,
 				url: this.src
 			});
 		}
 		
-		$BT.storage.tiles.saveTile(this, this.src);
-
+		//$BT.storage.tiles.saveTile(this, this.src);
+		
 		layer._tileLoaded();
 	},
 
