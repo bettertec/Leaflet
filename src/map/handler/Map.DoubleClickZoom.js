@@ -22,7 +22,7 @@ L.Map.DoubleClickZoom = L.Handler.extend({
 			this.zoomIn();
 		
 		}catch (error) {
-			debugError(error);
+			$BT.log.error(error);
 		}
 	}
 });
