@@ -477,7 +477,7 @@ L.TileLayer = L.Class.extend({
 		tile.onerror = this._tileOnError;
 
 		//tile.src     = this.getTileUrl(tilePoint);
-		tile.crossOrigin = 'anonymous';
+		//tile.crossOrigin = 'Anonymous';
 		tile.src = $BT.storage.tiles.getTileURL(this.getTileUrl(tilePoint));
 	},
 
