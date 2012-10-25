@@ -112,17 +112,11 @@ L.Path = L.Path.extend({
 		}
 
 		this._fireMouseEvent(e);
-
-		L.DomEvent.stopPropagation(e);
 	},
 
 	_fireMouseEvent: function (e) {
 		if (!this.hasEventListeners(e.type)) {
 			return;
-		}
-
-		if (e.type === 'contextmenu') {
-			L.DomEvent.preventDefault(e);
 		}
 
 		var map = this._map,
@@ -136,6 +130,11 @@ L.Path = L.Path.extend({
 			containerPoint: containerPoint,
 			originalEvent: e
 		});
+
+		if (e.type === 'contextmenu') {
+			L.DomEvent.preventDefault(e);
+		}
+		L.DomEvent.stopPropagation(e);
 	}
 });
 

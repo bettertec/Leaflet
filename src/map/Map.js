@@ -314,7 +314,7 @@ L.Map = L.Class.extend({
 		if (!this._size || this._sizeChanged) {
 			this._size = new L.Point(
 				this._container.clientWidth,
-				this._container.clientHeight);
+				this._container.clientHeight + 2*$BT.opt_map_center_offset);
 
 			this._sizeChanged = false;
 		}
@@ -517,6 +517,9 @@ L.Map = L.Class.extend({
 
 		this._tileLayersToLoad = this._tileLayersNum;
 
+		var loading = !this._loaded;
+		this._loaded = true;
+
 		this.fire('viewreset', {hard: !preserveMapOffset});
 
 		this.fire('move');
@@ -527,8 +530,7 @@ L.Map = L.Class.extend({
 
 		this.fire('moveend', {hard: !preserveMapOffset});
 
-		if (!this._loaded) {
-			this._loaded = true;
+		if (loading) {
 			this.fire('load');
 		}
 	},

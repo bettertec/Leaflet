@@ -181,7 +181,7 @@ L.TileLayer = L.Class.extend({
 			}
 		}
 
-		this._container.style.zIndex = isFinite(edgeZIndex) ? edgeZIndex + compare(1, -1) : '';
+		this.options.zIndex = this._container.style.zIndex = (isFinite(edgeZIndex) ? edgeZIndex : 0) + compare(1, -1);
 	},
 
 	_updateOpacity: function () {
@@ -245,7 +245,8 @@ L.TileLayer = L.Class.extend({
 	},
 
 	_update: function (e) {
-		if (this._map._panTransition && this._map._panTransition._inProgress) { return; }
+
+		if (!this._map) { return; }
 
 		var bounds   = this._map.getPixelBounds(),
 		    zoom     = this._map.getZoom(),
@@ -475,7 +476,9 @@ L.TileLayer = L.Class.extend({
 		tile.onload  = this._tileOnLoad;
 		tile.onerror = this._tileOnError;
 
-		tile.src     = this.getTileUrl(tilePoint);
+		//tile.src     = this.getTileUrl(tilePoint);
+		//tile.crossOrigin = 'Anonymous';
+		tile.src = $BT.storage.tiles.getTileURL(this.getTileUrl(tilePoint));
 	},
 
     _tileLoaded: function () {
@@ -491,13 +494,15 @@ L.TileLayer = L.Class.extend({
 		//Only if we are loading an actual image
 		if (this.src !== L.Util.emptyImageUrl) {
 			L.DomUtil.addClass(this, 'leaflet-tile-loaded');
-
+			
 			layer.fire('tileload', {
 				tile: this,
 				url: this.src
 			});
 		}
-
+		
+		$BT.storage.tiles.saveTile(this, this.src);
+		
 		layer._tileLoaded();
 	},
 
