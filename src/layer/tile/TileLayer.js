@@ -478,7 +478,10 @@ L.TileLayer = L.Class.extend({
 
 		//tile.src     = this.getTileUrl(tilePoint);
 		//tile.crossOrigin = 'Anonymous';
-		tile.src = $BT.storage.tiles.getTileURL(this.getTileUrl(tilePoint));
+		//tile.src = $BT.storage.tiles.getTileURL(this.getTileUrl(tilePoint));
+		
+		this._adjustTilePoint(tilePoint);
+		tile.src = $BT.storage.tiles.getTileURL(this._getZoomForUrl(), tilePoint.x, tilePoint.y);
 	},
 
     _tileLoaded: function () {
@@ -501,7 +504,7 @@ L.TileLayer = L.Class.extend({
 			});
 		}
 		
-		$BT.storage.tiles.saveTile(this, this.src);
+		//$BT.storage.tiles.saveTile(this, this.src);
 		
 		layer._tileLoaded();
 	},
