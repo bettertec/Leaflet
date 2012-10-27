@@ -478,7 +478,6 @@ L.TileLayer = L.Class.extend({
 
 		//tile.src     = this.getTileUrl(tilePoint);
 		//tile.crossOrigin = 'Anonymous';
-		//tile.src = $BT.storage.tiles.getTileURL(this.getTileUrl(tilePoint));
 		
 		this._adjustTilePoint(tilePoint);
 		tile.src = $BT.storage.tiles.getTileURL(this._getZoomForUrl(), tilePoint.x, tilePoint.y);

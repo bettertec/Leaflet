@@ -20,7 +20,10 @@ L.Map.ScrollWheelZoom = L.Handler.extend({
 		var delta = L.DomEvent.getWheelDelta(e);
 
 		this._delta += delta;
-		this._lastMousePos = this._map.mouseEventToContainerPoint(e);
+		
+		//this._lastMousePos = this._map.mouseEventToContainerPoint(e);
+		this._lastMousePos = this._map._getCenterLayerPoint();
+		
 
 		
 
