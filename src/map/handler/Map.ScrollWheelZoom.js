@@ -22,7 +22,6 @@ L.Map.ScrollWheelZoom = L.Handler.extend({
 		this._delta += delta;
 
 		this._lastMousePos = this._map._getCenterLayerPoint();
-
 		
 
 		if (!this._startTime) {
