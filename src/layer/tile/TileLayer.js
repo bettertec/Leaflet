@@ -476,11 +476,11 @@ L.TileLayer = L.Class.extend({
 		tile.onload  = this._tileOnLoad;
 		tile.onerror = this._tileOnError;
 
-		//tile.src     = this.getTileUrl(tilePoint);
+		tile.src     = this.getTileUrl(tilePoint);
 		//tile.crossOrigin = 'Anonymous';
 		
-		this._adjustTilePoint(tilePoint);
-		tile.src = $BT.storage.tiles.getTileURL(this._getZoomForUrl(), tilePoint.x, tilePoint.y);
+		//this._adjustTilePoint(tilePoint);
+		//tile.src = $BT.storage.tiles.getTileURL(this._getZoomForUrl(), tilePoint.x, tilePoint.y);
 	},
 
     _tileLoaded: function () {
