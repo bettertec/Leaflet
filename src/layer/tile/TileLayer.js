@@ -475,22 +475,7 @@ L.TileLayer = L.Class.extend({
 		tile._layer  = this;
 		tile.onload  = this._tileOnLoad;
 		tile.onerror = this._tileOnError;
-<<<<<<< HEAD
 		tile.src     = this.getTileUrl(tilePoint);
-=======
-
-		tile.src     = this.getTileUrl(tilePoint);
-		//tile.crossOrigin = 'Anonymous';
-		//tile.src = $BT.storage.tiles.getTileURL(this.getTileUrl(tilePoint));
-		
-<<<<<<< HEAD
-		this._adjustTilePoint(tilePoint);
-		tile.src = $BT.storage.tiles.getTileURL(this._getZoomForUrl(), tilePoint.x, tilePoint.y);
->>>>>>> changes on tilelayer
-=======
-		//this._adjustTilePoint(tilePoint);
-		//tile.src = $BT.storage.tiles.getTileURL(this._getZoomForUrl(), tilePoint.x, tilePoint.y);
->>>>>>> deactivated tileproxy
 	},
 
     _tileLoaded: function () {
@@ -512,12 +497,6 @@ L.TileLayer = L.Class.extend({
 				url: this.src
 			});
 		}
-<<<<<<< HEAD
-=======
-		
-		//$BT.storage.tiles.saveTile(this, this.src);
-		
->>>>>>> changes on tilelayer
 		layer._tileLoaded();
 	},
 
