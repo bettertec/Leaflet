@@ -18,7 +18,7 @@ L.Marker = L.Class.extend({
 	},
 
 	initialize: function (latlng, options) {
-		L.Util.setOptions(this, options);
+		L.setOptions(this, options);
 		this._latlng = L.latLng(latlng);
 	},
 
@@ -143,8 +143,8 @@ L.Marker = L.Class.extend({
 
 		if (this.options.riseOnHover) {
 			L.DomEvent
-				.off(this._icon, 'mouseover', this._bringToFront)
-				.off(this._icon, 'mouseout', this._resetZIndex);
+			    .off(this._icon, 'mouseover', this._bringToFront)
+			    .off(this._icon, 'mouseout', this._resetZIndex);
 		}
 
 		panes.markerPane.removeChild(this._icon);
@@ -179,12 +179,13 @@ L.Marker = L.Class.extend({
 	},
 
 	_initInteraction: function () {
-		if (!this.options.clickable) {
-			return;
-		}
+
+		if (!this.options.clickable) { return; }
+
+		// TODO refactor into something shared with Map/Path/etc. to DRY it up
 
 		var icon = this._icon,
-			events = ['dblclick', 'mousedown', 'mouseover', 'mouseout'];
+		    events = ['dblclick', 'mousedown', 'mouseover', 'mouseout', 'contextmenu'];
 
 		L.DomUtil.addClass(icon, 'leaflet-clickable');
 		L.DomEvent.on(icon, 'click', this._onMouseClick, this);
@@ -203,20 +204,32 @@ L.Marker = L.Class.extend({
 	},
 
 	_onMouseClick: function (e) {
-		if (this.hasEventListeners(e.type)) {
+		var wasDragged = this.dragging && this.dragging.moved();
+
+		if (this.hasEventListeners(e.type) || wasDragged) {
 			L.DomEvent.stopPropagation(e);
 		}
-		if (this.dragging && this.dragging.moved()) { return; }
+
+		if (wasDragged) { return; }
+
 		if (this._map.dragging && this._map.dragging.moved()) { return; }
+
 		this.fire(e.type, {
 			originalEvent: e
 		});
 	},
 
 	_fireMouseEvent: function (e) {
+
 		this.fire(e.type, {
 			originalEvent: e
 		});
+
+		// TODO proper custom event propagation
+		// this line will always be called if marker is in a FeatureGroup
+		if (e.type === 'contextmenu' && this.hasEventListeners(e.type)) {
+			L.DomEvent.preventDefault(e);
+		}
 		if (e.type !== 'mousedown') {
 			L.DomEvent.stopPropagation(e);
 		}
