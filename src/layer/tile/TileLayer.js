@@ -250,21 +250,24 @@ L.TileLayer = L.Class.extend({
 
 		var bounds = this._map.getPixelBounds(),
 		    zoom = this._map.getZoom(),
-		    tileSize = this.options.tileSize;
+		    tileSize = this.options.tileSize,
+			offset   = this.options.tileLoadOffset;
 
 		if (zoom > this.options.maxZoom || zoom < this.options.minZoom) {
 			return;
 		}
 
 		var nwTilePoint = new L.Point(
-		        Math.floor(bounds.min.x / tileSize),
-		        Math.floor(bounds.min.y / tileSize)),
+			Math.floor(bounds.min.x / tileSize),
+			Math.floor(bounds.min.y / tileSize));
+			nwTilePoint = nwTilePoint.subtract(new L.Point(offset, offset));
 
-		    seTilePoint = new L.Point(
-		        Math.floor(bounds.max.x / tileSize),
-		        Math.floor(bounds.max.y / tileSize)),
+		var	seTilePoint = new L.Point(
+			Math.floor(bounds.max.x / tileSize),
+			Math.floor(bounds.max.y / tileSize));
+			seTilePoint = seTilePoint.add(new L.Point(offset, offset));
 
-		    tileBounds = new L.Bounds(nwTilePoint, seTilePoint);
+		var	tileBounds = new L.Bounds(nwTilePoint, seTilePoint);
 
 		this._addTilesFromCenterOut(tileBounds);
 
